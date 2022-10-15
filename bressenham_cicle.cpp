@@ -4,7 +4,6 @@
 #include<math.h>
 
 float x,y,R;
-float xc,yc;
 
 void show_pixels(float x, float y)
 {
@@ -15,27 +14,27 @@ void show_pixels(float x, float y)
 }
 
 void plot(float x,float y){
-    show_pixels(x+xc,y+yc);
-    show_pixels(-x+xc,y+yc);
-    show_pixels(x+xc,-y+yc);
-    show_pixels(-x+xc,-y+yc);
-    show_pixels(-y+xc,-x+yc);
-    show_pixels(-y+xc,x+yc);
-    show_pixels(y+xc,-x+yc);
-    show_pixels(y+xc,x+yc);
+    show_pixels(x,y);
+    show_pixels(-x,y);
+    show_pixels(x,-y);
+    show_pixels(-x,-y);
+    show_pixels(-y,-x);
+    show_pixels(-y,x);
+    show_pixels(y,-x);
+    show_pixels(y,x);
 }
 
 void display(void)
 {
     x=0,y=R;
-    float P=1-R;
+    float D=3-2*R;
 
     while(x<=y){
         plot(x,y);
-        if(P<0)
-            P+=2*x+3;
+        if(D<0)
+            D+=4*x+6;
         else{
-            P+=2*(x-y)+5;
+            D+=4*(x-y)+10;
             y--;
         }
         x++;
@@ -58,12 +57,11 @@ int main(int argc, char **argv)
     printf("Enter Radius : ");
     scanf("%f",&R);
     // R= 80;
-    xc=0,yc=0;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(600, 600);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow("Circle Generation using Mid point method");
+    glutCreateWindow("Circle Generation using Bresenham's Algo");
     init();
     glutDisplayFunc(display);
     glutMainLoop();
