@@ -1,3 +1,4 @@
+// Circle generation using Bresenham's circle generation algorithm.
 #include <GL/glut.h>
 #include <bits/stdc++.h>
 
